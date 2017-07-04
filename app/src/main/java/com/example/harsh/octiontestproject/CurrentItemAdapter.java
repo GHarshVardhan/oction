@@ -22,6 +22,7 @@ public class CurrentItemAdapter extends RecyclerView.Adapter<CurrentItemAdapter.
 
     private List<ItemDatum> ItemDatumsList;
     ImageLoader imageLoader;
+    DisplayImageOptions displayimageOptions;
 
     class MyViewHolder extends RecyclerView.ViewHolder {
         TextView title, current_price, retailPrice,time;
@@ -40,7 +41,8 @@ public class CurrentItemAdapter extends RecyclerView.Adapter<CurrentItemAdapter.
 
     public CurrentItemAdapter(List<ItemDatum> ItemDatumsList, Context context) {
         this.ItemDatumsList = ItemDatumsList;
-        DisplayImageOptions displayimageOptions = new DisplayImageOptions.Builder().build();
+        displayimageOptions = new DisplayImageOptions.Builder().cacheInMemory(true)
+                .cacheOnDisk(true).build();
 
 
         // Create global configuration and initialize ImageLoader with this configuration
@@ -64,7 +66,7 @@ public class CurrentItemAdapter extends RecyclerView.Adapter<CurrentItemAdapter.
         holder.title.setText(itemDatum.getAuction().getTitle());
         holder.retailPrice.setText("Reatail Price "+itemDatum.getAuction().getProductPrice());
         holder.current_price.setText("HK$"+itemDatum.getAuction().getPrice());
-        imageLoader.displayImage("https://dev-us-02.oction.co/api/v1"+itemDatum.getMedia().get(0).getMedia(), holder.imageView);
+        imageLoader.displayImage("https://dev-us-02.oction.co/api/v1"+itemDatum.getMedia().get(0).getMedia(), holder.imageView,displayimageOptions);
     }
 
     @Override
