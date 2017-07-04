@@ -34,7 +34,6 @@ public class HomeActivity extends AppCompatActivity {
         upcomming = (TextView) findViewById(R.id.textView2);
         currentSelected = findViewById(R.id.view);
         upcommingSelcted = findViewById(R.id.view2);
-        showCurrentFragment();
         current.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,7 +64,7 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        isStoragePermissionGranted();
+        if (isStoragePermissionGranted())showCurrentFragment();;
     }
 
     public  boolean isStoragePermissionGranted() {
